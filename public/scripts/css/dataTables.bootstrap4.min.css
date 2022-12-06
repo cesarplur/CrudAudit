@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Laravel</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;                
+                font-family: 'Font Awesome 5 Duotone';                
+            }
+            h1{
+                text-align:center;
+            }
+            div#mainDiv{
+                display:block;
+                width:100%;
+                padding-left: 25%;
+                padding-right: 25%;
+                
+            }
+            tables_length{
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+         </style>
+    </head>
+    <body><br /><br />
+        <h1>Auditorias</h1>
+        <br /><br />
+        <div name="mainDiv" id="mainDiv">
+        <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#showAudits" id="showaudi">Mostrar Auditorias</button>
+        <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">Nueva Auditoria</button>
+        </div>
+        
+<!-- Pop up nueva auditoria Inicio -->
+<div class="modal fade" id="modalForm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Pop up Header -->
+            <div class="modal-header">                
+                <h4 class="modal-title" id="myModalLabel">Nueva Auditoria</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            
+            <!-- Form pop up -->
+            <div class="modal-body">
+                <!--@csrf-->
+                <p class="statusMsg"></p>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="inputName">Usuario</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="Usuario"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTipo">Tipo</label>
+                        <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
+                    <select class="form-control" id="inputTipo">
+                        <option selected></option>
+                        <option value="Auditoría interna">Auditoría interna</option>
+                        <option value="Auditoría externa">Auditoría externa</option>
+                        <option value="Auditoría contable">Auditoría contable</option>
+                        <option value="Auditoría operativa">Auditoría operativa</option>
+                        <option value="Auditoría financiera">Auditoría financiera</option>
+                        <option value="Auditoría medioambiental">Auditoría medioambiental</option>
+                        <option value="Auditoría informática">Auditoría informática</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDesc">Descripción</label>
+                        <textarea class="form-control" id="inputDesc" placeholder="Descripción..."></textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Pop up botones -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
+                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>   
+<!-- Pop up nueva auditoria Fin -->
+
+<!--Pop up tabla Auditorias Inicio-->
+<div class="modal fade" id="showAudits" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">                
+                <h4 class="modal-title" id="myModalLabel">Auditorias</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            
+    <table id="tables" class="table table-striped table-bordered nowrap" style="width:90%;margin-left: auto;margin-right: auto;">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usuario</th>
+                <th>Auditoria</th>                
+                <th>Descripción</th>
+                
+            </tr>
+        </thead>        
+        <tbody>
+            @foreach ($datos as $item)
+                <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->Usuario }}</td>
+                    <td>{{ $item->Nombre }}</td>
+                    <td>{{ $item->Descripcion }}</td>
+                </tr>    
+            @endforeach
+        </tbody>
+    </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>       
+<!--Pop up tabla Auditorias Fin-->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        
+ <!--Mostrar tabla-->
+ <script>
+ //$(document).ready(function () {
+document.getElementById("showaudi").onclick = function() { 
+    var data = "";       
+    $('#tables').DataTable({   
+        "processing": false,
+        "serverSide": false,              
+        "paging": true,
+        "pageLength": 3,
+        "searching": false,
+        "bLengthChange": false,
+        "ajax": {
+        "url": "{{ route('auditoria.show') }}",
+        "type": "GET",
+        "dataType": "json",
+        "dataSrc": "", 
+    },           
+    success:function(data){
+        //var datajson=json.parse(data.trim());
+        //$('#tables tbody').html(data.html);
+        console.log('hola mundo');
+            },
+        });
+       $("#tables").dataTable().fnDestroy();         
+       /*var table = $('.tables').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('auditoria.show') }}",
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'Usuario', name: 'Usuario'},
+            {data: 'Nombre', name: 'detail'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    }); */
+    console.log('hola mundo');                    
+    };     
+</script>
+
+
+<!--Enviar Form-->
+<script>
+function submitContactForm(){    
+    
+    var user = $('#inputName').val();
+    var tipo = $('#inputTipo').val();
+    var desc = $('#inputDesc').val();
+    var token = '{{ csrf_token() }}';
+    var msg = '';
+    
+    if(user.trim() == '' ){
+        alert('Ingresa el usuario.');
+        $('#inputName').focus();
+        return false;
+    }else if(tipo.trim() == '' ){
+        alert('Ingresa el tipo de Auditoria.');
+        $('#inputTipo').focus();
+        return false;
+    }else if(desc.trim() == '' ){
+        alert('Ingresa la descripción.');
+        $('#inputMessage').focus();
+        return false;
+    }else{
+        $.ajaxSetup({
+            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
+        });
+        $.ajax({            
+            type:'post',
+            url:'{{ route('auditoria.store') }}',
+            data:'contactFrmSubmit=1&name='+user+'&tipo='+tipo+'&desc='+desc,
+            beforeSend: function () {
+                $('.submitBtn').attr("disabled","disabled");
+                $('.modal-body').css('opacity', '.5');
+            },
+            success:function(msg){                
+                if(msg == 'ok'){
+                    $('#inputName').val('');
+                    $('#inputTipo').val('');
+                    $('#inputDesc').val('');
+                    $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');
+                }else{
+                    $('.statusMsg').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
+                }
+                $('.submitBtn').removeAttr("disabled");
+                $('.modal-body').css('opacity', '');
+            }
+        });
+    }
+}
+</script>
+    </body>
+</html>
