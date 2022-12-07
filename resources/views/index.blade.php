@@ -9,7 +9,7 @@
         <div name="mainDiv" id="mainDiv" style="text-align:center;">
         <button class="btn btn-primary" data-toggle="modal" data-target="#showAudits" id="showaudi">Mostrar Auditorias</button>
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalForm" id="newaudit">Nueva Auditoria</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#" id="relaudit" onclick="myFunction()">Rel Auditoria/Usuario</button>        
+        <button class="btn btn-primary" data-toggle="modal" data-target="#RelUserAudits" id="relaudit" >Rel Auditoria/Usuario</button>        
     </div>
     <!-- Pop up nueva auditoria Inicio -->
 <div class="modal fade" id="modalForm" role="dialog">
@@ -68,7 +68,7 @@
                 <h4 class="modal-title" id="myModalLabel">Auditorias</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
+                  <!--  <span class="sr-only">Close</span>-->
                 </button>
             </div>
             
@@ -95,6 +95,62 @@
     </div>
 </div>       
 <!--Pop up tabla Auditorias Fin-->
+
+<!-- Pop up RelUserAudits Inicio -->
+<div class="modal fade" id="RelUserAudits" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Pop up Header -->
+            <div class="modal-header">                
+                <h4 class="modal-title" id="myModalLabel">Relacion</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            
+            <!-- Form pop up -->
+            <div class="modal-body">
+                <!--@csrf-->
+                <form role="form">                    
+                    <div class="form-group">
+                        <label for="inputType">Tipo</label>
+                        <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
+                    <select class="form-control" id="inputType" name="inputType" onchange="showTable()">
+                    <option value="empty"></option>
+                        @foreach($data2 as $item)                          
+                        <option value="{{$item->Name}}">{{$item->Name}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                    
+                </form>
+            </div>
+    <div id="displayNone" name="displayNone"  style="display: none">
+        <table id="table2" class="table table-striped table-bordered nowrap" style="width:90%;margin-left: auto;margin-right: auto;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Usuario</th>
+                    <th>Auditoria</th>                
+                    <th>Descripción</th>                
+                </tr>
+            </thead>        
+            <tbody>               
+                <tr>                
+                </tr>                          
+            </tbody>
+    </table>
+    </div>
+            <!-- Pop up botones -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
+                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm23()" id="submitForm">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>   
+<!-- Pop up RelUserAudits Fin -->
 
 <!--Enviar Form-->
 <script>
@@ -149,37 +205,66 @@ function submitContactForm(){
 </script>
 <!--Fin Envia Form-->
 
-<!--Mostrar tabla-->
-<script type="text/javascript">
- $(document).ready(function () {
-    $('#tables').DataTable({
-            processing: true,
-            serverSide: false,
-            searching: true,
-            pageLength: 3,   
-        });
-    });     
-</script>
+<!--Mostrar table inicio-->
 <script type="text/javascript">
     //$(document).ready(function () {
     document.getElementById("showaudi").onclick = function() { 
-       var table =  $('#tables').DataTable({
+        var table = '';
+       table =  $('#tables').DataTable({
+            retrieve: true,
             processing: true,
             serverSide: false,
             searching: true,
-            pageLength: 3,
+            pageLength: 10,                       
             ajax: '{{ route('Audits.show') }}',
             columns: [
                 { data: 'id', name: 'id', visible: true },
                 { data: 'User', name: 'User', visible: true },
                 { data: 'Name', name: 'Name', visible: true }, 
                 { data: 'Description', name: 'Description', visible: true },               
-            ],
-            order: [[0, 'asc']]
+            ],    
             
         });
         //$("#tables").dataTable().fnDestroy(); 
     };
     </script>
+<!--Mostrar table final-->
+
+<script type="text/javascript"> 
+        //$('#inputType').change(function() {
+        //$(".inputType").on('change', function () {
+    function showTable(){
+        table =  $('#table2').DataTable({
+                    retrieve: true,
+                    processing: true,
+                    serverSide: false,
+                    searching: false,
+                    pageLength: 5,                       
+                    ajax: '{{ route('Audits.show') }}',
+                    columns: [
+                        { data: 'id', name: 'id', visible: true },
+                        { data: 'User', name: 'User', visible: true },
+                        { data: 'Name', name: 'Name', visible: true }, 
+                        { data: 'Description', name: 'Description', visible: true },               
+                    ],                
+                });             
+                
+        var value = $("#inputType option:selected").val();                                 
+        //alert(value);
+            if (value == 'empty'){ 
+                $("#displayNone").hide();
+            }else{
+                var selection = $("#inputType option:selected").val();
+                //var dataset = $("#table2").find("tr");
+                var column = table.column($("#inputType option:selected").attr('data-column')); 
+        // Toggle the visibility
+        column.visible(!column.visible());
+                $("#displayNone").show();
+            }
+    };
+
+   
+</script>
+
 </body>
 </html>
