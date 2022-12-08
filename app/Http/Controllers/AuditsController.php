@@ -49,13 +49,14 @@ class AuditsController extends Controller
     }
 
     
-    public function edit(Audits $audits)
+    public function edit($id)
     {
-        //
+        $audtis = Audits::find($id);
+        return view("actualizar", compact($audits));
     }
 
     
-    public function update(Request $request, Audits $audits)
+    public function update(Request $request, $id)
     {
         //
     }

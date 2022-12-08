@@ -119,7 +119,7 @@
                     <select class="form-control" id="inputType" name="inputType" onchange="showTable()">
                     <option value="empty"></option>
                         @foreach($data2 as $item)                          
-                        <option value="{{$item->Name}}">{{$item->Name}}</option>
+                        <option value="{{ $item->Id }}">{{ $item->Name }}</option>
                         @endforeach
                     </select>
                     </div>
@@ -144,8 +144,8 @@
     </div>
             <!-- Pop up botones -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
-                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm23()" id="submitForm">Enviar</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal" style="align:left;">Cancelar</button>
+                <button type="button" class="btn btn-primary submitBtn" onclick="" id="submitForm">Editar</button>
             </div>
         </div>
     </div>
@@ -239,7 +239,9 @@ function submitContactForm(){
                     processing: true,
                     serverSide: false,
                     searching: false,
-                    pageLength: 5,                       
+                    pageLength: 5,
+                    lengthChange: false,
+                    info: false,                       
                     ajax: '{{ route('Audits.show') }}',
                     columns: [
                         { data: 'id', name: 'id', visible: true },
@@ -251,14 +253,18 @@ function submitContactForm(){
                 
         var value = $("#inputType option:selected").val();                                 
         //alert(value);
-        //alert(value);
+       
             if (value == 'empty'){ 
                 $("#displayNone").hide();
             }else{
                 var selection = $("#inputType option:selected").val();
                 //var dataset = $("#table2").find("tr");
-                var column = table.column($("#inputType option:selected").attr('data-column')); 
-                $( ".our-table td:nth-child(2):contains('y')" ).length;
+                alert(selection);
+                table
+                    .search( selection )
+                    .draw();
+        
+                $("#displayNone").show();
             }
     };
 
