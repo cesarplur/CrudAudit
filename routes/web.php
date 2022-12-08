@@ -13,5 +13,5 @@ Route::post('/store', [AuditsController::class, 'store'])->name('Audits.store');
 Route::get('/create', [AuditsController::class, 'create'])->name('Audits.create');
 Route::post('/edit/{1}', [AuditsController::class, 'edit'])->name('Audits.edit');
 Route::get('/show', [AuditsController::class, 'show'])->name('Audits.show');
-Route::get('/index', [AudittypeController::class, 'index'])->name('Audittype.index');
-Route::put('/update/{1}', [AuditsController::class, 'update'])->name('Audits.update');
+Route::get('/', [AudittypeController::class, 'index'])->name('Audittype.index');
+//Route::put('/update/{1}', [AuditsController::class, 'update'])->name('Audits.update');
