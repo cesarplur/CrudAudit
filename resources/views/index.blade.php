@@ -257,9 +257,7 @@ function submitContactForm(){
                 var selection = $("#inputType option:selected").val();
                 //var dataset = $("#table2").find("tr");
                 var column = table.column($("#inputType option:selected").attr('data-column')); 
-        // Toggle the visibility
-        column.visible(!column.visible());
-                $("#displayNone").show();
+                $( ".our-table td:nth-child(2):contains('y')" ).length;
             }
     };
 
