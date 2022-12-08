@@ -251,6 +251,7 @@ function submitContactForm(){
                 
         var value = $("#inputType option:selected").val();                                 
         //alert(value);
+        //alert(value);
             if (value == 'empty'){ 
                 $("#displayNone").hide();
             }else{
