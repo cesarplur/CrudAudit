@@ -1,6 +1,5 @@
 @extends('layout')
-<html>
-    @yield('head')
+<html>   
 <body>
         <br /><br /><br /><br /><br />
     <div style="text-align:center;">
@@ -20,7 +19,7 @@
                 <h4 class="modal-title" id="myModalLabel">Nueva Auditoria</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
+                    <span class="sr-only">Cerrar</span>
                 </button>
             </div>
             
@@ -53,7 +52,9 @@
             <!-- Pop up botones -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
-                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()" id="submitForm">Enviar</button>
+                <button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>
+                <!--<button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()" id="submitForm">Enviar</button>-->
+            </div>
             </div>
         </div>
     </div>
@@ -73,20 +74,7 @@
             </div>
             
     <table id="tables" class="table table-striped table-bordered nowrap" style="width:90%;margin-left: auto;margin-right: auto;">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Usuario</th>
-                <th>Auditoria</th>                
-                <th>Descripción</th>                
-            </tr>
-        </thead>        
-        <tbody>                
-                
-                <tr>                
-                </tr>    
-                          
-        </tbody>
+       
     </table>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>
@@ -128,18 +116,7 @@
             </div>
     <div id="displayNone" name="displayNone"  style="display: none">
         <table id="table2" class="table table-striped table-bordered nowrap" style="width:90%;margin-left: auto;margin-right: auto;">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Usuario</th>
-                    <th>Auditoria</th>                
-                    <th>Descripción</th>                
-                </tr>
-            </thead>        
-            <tbody>               
-                <tr>                
-                </tr>                          
-            </tbody>
+          
     </table>
     </div>
             <!-- Pop up botones -->
@@ -154,10 +131,10 @@
 
 <!--Enviar Form-->
 <script>
-function submitContactForm(){   
-    //document.getElementById("submitForm").onclick = function() {
+//function submitContactForm(){   
+document.getElementById("#submitForm").onclick = function() {
     var user = $('#inputName').val();
-    var tipo = $('#inputTipo').val();
+    var type1 = $('#inputTipo').val();
     var desc = $('#inputDesc').val();
     var token = '{{ csrf_token() }}';
     var msg = '';
@@ -166,7 +143,7 @@ function submitContactForm(){
         alert('Ingresa el usuario.');
         $('#inputName').focus();
         return false;
-    }else if(tipo.trim() == '' ){
+    }else if(type1.trim() == '' ){
         alert('Ingresa el tipo de Auditoria.');
         $('#inputTipo').focus();
         return false;
@@ -181,7 +158,7 @@ function submitContactForm(){
         $.ajax({            
             type:'post',
             url:'{{ route('Audits.store') }}',
-            data:'contactFrmSubmit=1&name='+user+'&tipo='+tipo+'&desc='+desc,
+            data:'contactFrmSubmit=1&name='+user+'&tipo='+type1+'&desc='+desc,
             beforeSend: function () {
                 $('.submitBtn').attr("disabled","disabled");
                 $('.modal-body').css('opacity', '.5');
@@ -218,10 +195,10 @@ function submitContactForm(){
             pageLength: 10,                       
             ajax: '{{ route('Audits.show') }}',
             columns: [
-                { data: 'id', name: 'id', visible: true },
-                { data: 'User', name: 'User', visible: true },
-                { data: 'Name', name: 'Name', visible: true }, 
-                { data: 'Description', name: 'Description', visible: true },               
+                { data: 'id', title: 'Id', visible: true },
+                { data: 'User', title: 'Usuario', visible: true },
+                { data: 'Name', title: 'Nombre', visible: true }, 
+                { data: 'Description', title: 'Descripción', visible: true },               
             ],    
             
         });
@@ -241,13 +218,14 @@ function submitContactForm(){
                     searching: false,
                     pageLength: 5,
                     lengthChange: false,
-                    info: false,                       
+                    info: false,
+                    fixedHeader: true,                       
                     ajax: '{{ route('Audits.show') }}',
                     columns: [
-                        { data: 'id', name: 'id', visible: true },
-                        { data: 'User', name: 'User', visible: true },
-                        { data: 'Name', name: 'Name', visible: true }, 
-                        { data: 'Description', name: 'Description', visible: true },               
+                        { data: 'id', title: 'Id', visible: true },
+                        { data: 'User', title: 'Usuario', visible: true },
+                        { data: 'Name', title: 'Nombre', visible: true }, 
+                        { data: 'Description', title: 'Descripción', visible: true },               
                     ],                
                 });             
                 
@@ -260,9 +238,9 @@ function submitContactForm(){
                 var selection = $("#inputType option:selected").val();
                 //var dataset = $("#table2").find("tr");
                 alert(selection);
-                table
-                    .search( selection )
-                    .draw();
+                //table
+                //    .search( selection )
+                //    .draw();
         
                 $("#displayNone").show();
             }
