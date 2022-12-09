@@ -21,13 +21,7 @@ document.getElementById('inputType').addEventListener('change', () => {
             if (value == 'empty'){ 
                 $("#displayNone").hide();
             }else{
-                var selection = $("#inputType option:selected").val();
-                //var dataset = $("#table2").find("tr");
-                //alert(selection);
-                //table
-                //    .search( selection )
-                //    .draw();
-        
+                var selection = $("#inputType option:selected").val();                
                 $("#displayNone").show();
             }
     });

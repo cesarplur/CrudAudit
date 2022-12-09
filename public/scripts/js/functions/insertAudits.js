@@ -1,6 +1,6 @@
 document.getElementById('submitForm').addEventListener('click', () => {
     var user = $('#inputName').val();
-    var type1 = $('#inputTipo').val();
+    var type1 = $('#inputTipo2').val();
     var desc = $('#inputDesc').val();
     var token = '{{ csrf_token() }}';
     var msg = '';
