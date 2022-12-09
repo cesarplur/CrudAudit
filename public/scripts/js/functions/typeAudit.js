@@ -3,8 +3,6 @@ document.getElementById('submitFormType').addEventListener('click', () => {
     var desc = $('#inputDescAudit').val();
     var token = '{{ csrf_token() }}';
     var msg = '';
-    alert(type1);
-    alert(desc);
     if(type1.trim() == '' ){
         alert('Ingresa el tipo de Auditoria.');
         $('#inputTypeAudit').focus();
@@ -19,7 +17,7 @@ document.getElementById('submitFormType').addEventListener('click', () => {
         });
         $.ajax({            
             type:'post',
-            url:'{{ route('Audittype.store') }}',
+            url:'/storetype',
             //data:'contactFrmSubmit=1&tipo='+type1+'&desc='+desc,
             data:'contactFrmSubmit=1&name='+type1+'&tipo='+type1+'&desc='+desc,
             beforeSend: function () {
@@ -28,8 +26,7 @@ document.getElementById('submitFormType').addEventListener('click', () => {
             },
             success:function(response){ 
                 var responseVal = response.success.toString();                          
-                if(responseVal == 'true'){                    
-                    
+                if(responseVal == 'true'){                     
                     $('#inputTypeAudit').val('');
                     $('#inputDescAudit').val('');
                     $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');

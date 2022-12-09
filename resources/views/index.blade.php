@@ -21,7 +21,7 @@
                 <h4 class="modal-title" id="myModalLabel">Nueva Auditoria</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
-                    <span class="sr-only">Cerrar</span>
+                    <!--<span class="sr-only">Cerrar</span>-->
                 </button>
             </div>            
             <!-- Form pop up -->
@@ -54,7 +54,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
                 <!--<button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>-->
-                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()" id="submitForm">Enviar</button>
+                <button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>
             </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                 <h4 class="modal-title" id="myModalLabel">Relacion</h4>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
+                    <!--<span class="sr-only">Close</span>-->
                 </button>
             </div>
             
@@ -169,177 +169,5 @@
 </div>   
 <!-- Registrar tipo auditoria Fin -->
 
-<!--Enviar Form-->
-<script type="text/javascript">
-//function submitContactForm(){   
-//document.getElementById("#submitForm").onclick = function() {
-document.getElementById('submitForm').addEventListener('click', () => {
-    var user = $('#inputName').val();
-    var type1 = $('#inputTipo').val();
-    var desc = $('#inputDesc').val();
-    var token = '{{ csrf_token() }}';
-    var msg = '';
-    
-    if(user.trim() == '' ){
-        alert('Ingresa el usuario.');
-        $('#inputName').focus();
-        return false;
-    }else if(type1.trim() == '' ){
-        alert('Ingresa el tipo de Auditoria.');
-        $('#inputTipo').focus();
-        return false;
-    }else if(desc.trim() == '' ){
-        alert('Ingresa la descripción.');
-        $('#inputMessage').focus();
-        return false;
-    }else{
-        $.ajaxSetup({
-            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
-        });
-        $.ajax({            
-            type:'post',
-            url:'{{ route('Audits.store') }}',
-            data:'contactFrmSubmit=1&name='+user+'&tipo='+type1+'&desc='+desc,
-            beforeSend: function () {
-                $('.submitBtn').attr("disabled","disabled");
-                $('.modal-body').css('opacity', '.5');
-            },
-            success:function(response){ 
-                var responseVal = response.success.toString();                          
-                if(responseVal == 'true'){                    
-                    $('#inputName').val('');
-                    $('#inputTipo').val('');
-                    $('#inputDesc').val('');
-                    $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');
-                }else{
-                    $('.statusMsg').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
-                }
-                $('.submitBtn').removeAttr("disabled");
-                $('.modal-body').css('opacity', '');
-            }
-        });
-    }
-});
-</script>
-<!--Fin Envia Form-->
-
-<!--Mostrar table inicio-->
-<script type="text/javascript">
-    //$(document).ready(function () {
-    document.getElementById("showaudi").onclick = function() { 
-        var table = '';
-       table =  $('#tables').DataTable({
-            retrieve: true,
-            processing: true,
-            serverSide: false,
-            searching: true,
-            pageLength: 10,                       
-            ajax: '{{ route('Audits.show') }}',
-            columns: [
-                { data: 'id', title: 'Id', visible: true },
-                { data: 'User', title: 'Usuario', visible: true },
-                { data: 'Name', title: 'Nombre', visible: true }, 
-                { data: 'Description', title: 'Descripción', visible: true },               
-            ],    
-            
-        });
-        //$("#tables").dataTable().fnDestroy(); 
-    };
-    </script>
-<!--Mostrar table final-->
-
-<script type="text/javascript"> 
-        //$('#inputType').change(function() {
-        //$(".inputType").on('change', function () {
-    function showTable(){
-        table =  $('#table2').DataTable({
-                    retrieve: true,
-                    processing: true,
-                    serverSide: false,
-                    searching: false,
-                    pageLength: 5,
-                    lengthChange: false,
-                    info: false,
-                    fixedHeader: true,                       
-                    ajax: '{{ route('Audits.show') }}',
-                    columns: [
-                        { data: 'id', title: 'Id', visible: true },
-                        { data: 'User', title: 'Usuario', visible: true },
-                        { data: 'Name', title: 'Nombre', visible: true }, 
-                        { data: 'Description', title: 'Descripción', visible: true },               
-                    ],                
-                });             
-                
-        var value = $("#inputType option:selected").val();                                 
-        //alert(value);
-       
-            if (value == 'empty'){ 
-                $("#displayNone").hide();
-            }else{
-                var selection = $("#inputType option:selected").val();
-                //var dataset = $("#table2").find("tr");
-                alert(selection);
-                //table
-                //    .search( selection )
-                //    .draw();
-        
-                $("#displayNone").show();
-            }
-    };
-
-   
-</script>
-<!--Enviar Form tipo inicio-->
-<script>
-//function submitContactForm(){   
-//document.getElementById("#submitFormType").onclick = function() {
-    document.getElementById('submitFormType').addEventListener('click', () => {
-    var type1 = $('#inputTypeAudit').val();
-    var desc = $('#inputDescAudit').val();
-    var token = '{{ csrf_token() }}';
-    var msg = '';
-    alert(type1);
-    alert(desc);
-    if(type1.trim() == '' ){
-        alert('Ingresa el tipo de Auditoria.');
-        $('#inputTypeAudit').focus();
-        return false;
-    }else if(desc.trim() == '' ){
-        alert('Ingresa la descripción.');
-        $('#inputDescAudit').focus();
-        return false;
-    }else{
-        $.ajaxSetup({
-            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
-        });
-        $.ajax({            
-            type:'post',
-            url:'{{ route('Audittype.store') }}',
-            //data:'contactFrmSubmit=1&tipo='+type1+'&desc='+desc,
-            data:'contactFrmSubmit=1&name='+type1+'&tipo='+type1+'&desc='+desc,
-            beforeSend: function () {
-                $('.submitBtn').attr("disabled","disabled");
-                $('.modal-body').css('opacity', '.5');
-            },
-            success:function(response){ 
-                var responseVal = response.success.toString();                          
-                if(responseVal == 'true'){                    
-                    
-                    $('#inputTypeAudit').val('');
-                    $('#inputDescAudit').val('');
-                    $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');
-                    //$('#tables').DataTable().ajax.reload();
-                    //window.location.href = window.location.href.split('#')[0];
-                }else{
-                    $('.statusMsg2').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
-                }
-                $('.submitBtn').removeAttr("disabled");
-                $('.modal-body').css('opacity', '');
-            }
-        });
-    }
-});
-</script>
-<!--Fin Envia Form tipo fin-->
 </body>
 </html>

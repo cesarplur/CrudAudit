@@ -14,6 +14,10 @@
         <script src="{{ asset('scripts/jquery/jquery.dataTables.min.js') }}" defer></script>         
         <script src="{{ asset('scripts/js/dataTables.bootstrap4.min.js') }}" defer></script>      
         <script src="{{ asset('scripts/js/functions/typeAudit.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/relAudits.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/showAudits.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/insertAudits.js') }}" defer></script>
+
         <style>    
        .navbar{
             background-color: #007bff !important;
