@@ -5,6 +5,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Test Audit</title>    
+        
         <script src="{{ asset('scripts/jquery/jquery-3.3.1.min.js') }}"></script>
         <link href="{{ asset('scripts/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('scripts/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">        
@@ -12,7 +13,7 @@
         <script src="{{ asset('scripts/jquery/bootstrap.min.js') }}"></script>         
         <script src="{{ asset('scripts/jquery/jquery.dataTables.min.js') }}" defer></script>         
         <script src="{{ asset('scripts/js/dataTables.bootstrap4.min.js') }}" defer></script>      
-       
+        <script src="{{ asset('scripts/js/functions/typeAudit.js') }}" defer></script>
         <style>    
        .navbar{
             background-color: #007bff !important;
@@ -33,6 +34,12 @@
         }
         .my-lg-0{
             margin-left: auto !important;
+        }
+        #mainDiv{
+             display: grid !important;
+             width: 100%;             
+             justify-content: center !important;
+             align-items: center !important;
         }
         </style>
     </head>

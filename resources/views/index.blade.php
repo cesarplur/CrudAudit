@@ -1,16 +1,18 @@
 @extends('layout')
-<html>   
+<html>
+    @yield('head')
 <body>
         <br /><br /><br /><br /><br />
     <div style="text-align:center;">
-        <h1>Auditorias</h1><br><br>        
+        <h1>Auditorias</h1><br /><br />        
         </div>
         <div name="mainDiv" id="mainDiv" style="text-align:center;">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#showAudits" id="showaudi">Mostrar Auditorias</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalForm" id="newaudit">Nueva Auditoria</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#RelUserAudits" id="relaudit" >Rel Auditoria/Usuario</button>        
+        <button class="btn btn-primary" data-toggle="modal" data-target="#showAudits" id="showaudi">Mostrar Auditorias</button><br /> 
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalForm" id="newaudit">Registrar Auditoria</button><br /> 
+        <button class="btn btn-primary" data-toggle="modal" data-target="#RelUserAudits" id="relaudit" >Rel Auditoria/Usuario</button> <br /> 
+        <button class="btn btn-primary" data-toggle="modal" data-target="#typeAudit" id="auditType" >Agregar tipo de Auditoria</button> <br />       
     </div>
-    <!-- Pop up nueva auditoria Inicio -->
+<!-- Pop up nueva auditoria Inicio -->
 <div class="modal fade" id="modalForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -21,8 +23,7 @@
                     <span aria-hidden="true">×</span>
                     <span class="sr-only">Cerrar</span>
                 </button>
-            </div>
-            
+            </div>            
             <!-- Form pop up -->
             <div class="modal-body">
                 <!--@csrf-->
@@ -52,8 +53,8 @@
             <!-- Pop up botones -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
-                <button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>
-                <!--<button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()" id="submitForm">Enviar</button>-->
+                <!--<button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>-->
+                <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()" id="submitForm">Enviar</button>
             </div>
             </div>
         </div>
@@ -129,10 +130,50 @@
 </div>   
 <!-- Pop up RelUserAudits Fin -->
 
+<!-- Registrar tipo auditoria Inicio -->
+<div class="modal fade" id="typeAudit" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Pop up Header -->
+            <div class="modal-header">                
+                <h4 class="modal-title" id="newAudit">Nuevo Tipo de Auditoria</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <!--<span class="sr-only">Cerrar</span>-->
+                </button>
+            </div>            
+            <!-- Form pop up -->
+            <div class="modal-body">
+                <!--@csrf-->
+                <p class="statusMsg2"></p>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="inputName">Tipo de Auditoria</label>
+                        <input type="text" class="form-control" id="inputTypeAudit" placeholder="Tipo de Auditoria"/>
+                    </div>                    
+                    <div class="form-group">
+                        <label for="inputDesc">Descripción</label>
+                        <textarea class="form-control" id="inputDescAudit" placeholder="Descripción..."></textarea>
+                    </div>
+                </form>
+            </div>            
+            <!-- Pop up botones -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="align:left;">Cancelar</button>
+                <!--<button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>-->
+                <button type="button" class="btn btn-primary submitBtn" id="submitFormType" >Enviar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>   
+<!-- Registrar tipo auditoria Fin -->
+
 <!--Enviar Form-->
-<script>
+<script type="text/javascript">
 //function submitContactForm(){   
-document.getElementById("#submitForm").onclick = function() {
+//document.getElementById("#submitForm").onclick = function() {
+document.getElementById('submitForm').addEventListener('click', () => {
     var user = $('#inputName').val();
     var type1 = $('#inputTipo').val();
     var desc = $('#inputDesc').val();
@@ -178,7 +219,7 @@ document.getElementById("#submitForm").onclick = function() {
             }
         });
     }
-}
+});
 </script>
 <!--Fin Envia Form-->
 
@@ -248,6 +289,57 @@ document.getElementById("#submitForm").onclick = function() {
 
    
 </script>
-
+<!--Enviar Form tipo inicio-->
+<script>
+//function submitContactForm(){   
+//document.getElementById("#submitFormType").onclick = function() {
+    document.getElementById('submitFormType').addEventListener('click', () => {
+    var type1 = $('#inputTypeAudit').val();
+    var desc = $('#inputDescAudit').val();
+    var token = '{{ csrf_token() }}';
+    var msg = '';
+    alert(type1);
+    alert(desc);
+    if(type1.trim() == '' ){
+        alert('Ingresa el tipo de Auditoria.');
+        $('#inputTypeAudit').focus();
+        return false;
+    }else if(desc.trim() == '' ){
+        alert('Ingresa la descripción.');
+        $('#inputDescAudit').focus();
+        return false;
+    }else{
+        $.ajaxSetup({
+            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
+        });
+        $.ajax({            
+            type:'post',
+            url:'{{ route('Audittype.store') }}',
+            //data:'contactFrmSubmit=1&tipo='+type1+'&desc='+desc,
+            data:'contactFrmSubmit=1&name='+type1+'&tipo='+type1+'&desc='+desc,
+            beforeSend: function () {
+                $('.submitBtn').attr("disabled","disabled");
+                $('.modal-body').css('opacity', '.5');
+            },
+            success:function(response){ 
+                var responseVal = response.success.toString();                          
+                if(responseVal == 'true'){                    
+                    
+                    $('#inputTypeAudit').val('');
+                    $('#inputDescAudit').val('');
+                    $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');
+                    //$('#tables').DataTable().ajax.reload();
+                    //window.location.href = window.location.href.split('#')[0];
+                }else{
+                    $('.statusMsg2').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
+                }
+                $('.submitBtn').removeAttr("disabled");
+                $('.modal-body').css('opacity', '');
+            }
+        });
+    }
+});
+</script>
+<!--Fin Envia Form tipo fin-->
 </body>
 </html>
