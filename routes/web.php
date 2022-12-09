@@ -16,3 +16,4 @@ Route::get('/show', [AuditsController::class, 'show'])->name('Audits.show');
 Route::get('/', [AudittypeController::class, 'index'])->name('Audittype.index');
 Route::post('/storetype', [AudittypeController::class, 'store'])->name('Audittype.store');
 Route::get('/update/{id}', [AuditsController::class, 'update'])->name('Audits.update');
+Route::get('/destroy/{id}', [AuditsController::class, 'destroy'])->name('Audits.destroy');

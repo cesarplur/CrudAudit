@@ -69,8 +69,9 @@ class AuditsController extends Controller
     }
 
    
-    public function destroy(Audits $audits)
+    public function destroy($id)
     {
-        //
+        $audit3 = Audits::find($id);
+        $audit3->delete();
     }
 }

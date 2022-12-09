@@ -36,12 +36,13 @@ document.getElementById('submitForm').addEventListener('click', () => {
                     $('#inputTipo').val('');
                     $('#inputDesc').val('');
                     $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');                    
-
+                    //var ref = $('#tables').DataTable();
+                    //ref.ajax.reload();
                 }else{
                     $('.statusMsg').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
                 }
                 $('.submitBtn').removeAttr("disabled");
-                $('.modal-body').css('opacity', '');
+                $('.modal-body').css('opacity', '');                
             }
         });
     }
@@ -98,4 +99,21 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
 });
 document.getElementById('deleteBtn2').addEventListener('click', () => {
     alert(row.id);
+    $.ajaxSetup({
+        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
+    });
+    $.ajax({            
+        type:'get',
+        url:"/destroy/"+ row.id,
+        data:'&id='+row.id, 
+    success: function() {
+        alert('Eliminado con exito')
+        $("#updateAudit").hide();
+        $('#inputName1').val('');
+        $('#inputTipo1').val('');
+        $('#inputDesc1').val('');
+        var ref = $('#tables').DataTable();
+        ref.ajax.reload();
+        }
+    });
 });
