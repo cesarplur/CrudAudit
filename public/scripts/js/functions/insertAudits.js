@@ -36,6 +36,7 @@ document.getElementById('submitForm').addEventListener('click', () => {
                     $('#inputTipo').val('');
                     $('#inputDesc').val('');
                     $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');
+
                 }else{
                     $('.statusMsg').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
                 }

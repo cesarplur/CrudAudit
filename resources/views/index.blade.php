@@ -14,7 +14,7 @@
     </div>
 <!-- Pop up nueva auditoria Inicio -->
 <div class="modal fade" id="modalForm" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Pop up Header -->
             <div class="modal-header">                
@@ -64,7 +64,7 @@
 
 <!--Pop up tabla Auditorias Inicio-->
 <div class="modal fade" id="showAudits" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">                
                 <h4 class="modal-title" id="myModalLabel">Auditorias</h4>
@@ -87,7 +87,7 @@
 
 <!-- Pop up RelUserAudits Inicio -->
 <div class="modal fade" id="RelUserAudits" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Pop up Header -->
             <div class="modal-header">                
@@ -132,7 +132,7 @@
 
 <!-- Registrar tipo auditoria Inicio -->
 <div class="modal fade" id="typeAudit" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Pop up Header -->
             <div class="modal-header">                
