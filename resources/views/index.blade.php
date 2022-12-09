@@ -13,7 +13,7 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#typeAudit" id="auditType" >Agregar tipo de Auditoria</button> <br />       
     </div>
 <!-- Pop up nueva auditoria Inicio -->
-<div class="modal fade" id="modalForm" role="dialog">
+<div class="modal" id="modalForm" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Pop up Header -->
@@ -34,9 +34,9 @@
                         <input type="text" class="form-control" id="inputName" placeholder="Usuario"/>
                     </div>
                     <div class="form-group">
-                        <label for="inputTipo">Tipo</label>
+                        <label for="inputTipo2">Tipo</label>
                         <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
-                    <select class="form-control" id="inputTipo">
+                    <select class="form-control" id="inputTipo2">
                     <option value=""></option>
                         @foreach($data2 as $item)                          
                         <option value="{{$item->Name}}">{{$item->Name}}</option>
@@ -78,7 +78,8 @@
        
     </table>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" >Cerrar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeBtn1">Cerrar</button>
+                <button type="button" class="btn btn-dark" style="display:none;" id="updateBtn1" action="/edit" methos="POST" >Actualizar</button>
             </div>
         </div>
     </div>
@@ -169,5 +170,56 @@
 </div>   
 <!-- Registrar tipo auditoria Fin -->
 
+<!-- Pop up update auditoria Inicio -->
+<div class="modal" id="updateAudit" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Pop up Header -->
+            <div class="modal-header">                
+                <h4 class="modal-title" id="myModalLabel">Nueva Auditoria</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true" id="close1">×</span>
+                    <!--<span class="sr-only">Cerrar</span>-->
+                </button>
+            </div>            
+            <!-- Form pop up -->
+            <div class="modal-body">
+                <!--@csrf-->
+                <p class="statusMsg"></p>
+                <form role="form">
+                    <!--@method("PUT")-->
+                    <div class="form-group">
+                        <label for="inputName1">Usuario</label>
+                        <input type="text" class="form-control" id="inputName1" placeholder="Usuario"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTipo">Tipo</label>
+                        <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
+                    <select class="form-control" id="inputTipo1">
+                    <option value=""></option>
+                        @foreach($data2 as $item)                          
+                        <option value="{{$item->Name}}">{{$item->Name}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDesc">Descripción</label>
+                        <textarea class="form-control" id="inputDesc1" placeholder="Descripción..."></textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Pop up botones -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal1" style="align:left;">Cancelar</button>
+                <!--<button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>-->
+                <button type="button" class="btn btn-warning submitBtn"  id="deleteBtn2">Eliminar</button>
+                <button type="button" class="btn btn-primary submitBtn"  id="updateBtn2">Enviar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>   
+<!-- Pop up update auditoria Fin -->
 </body>
 </html>

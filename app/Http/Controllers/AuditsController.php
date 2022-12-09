@@ -51,14 +51,21 @@ class AuditsController extends Controller
     
     public function edit($id)
     {
-        $audtis = Audits::find($id);
-        return view("actualizar", compact($audits));
+        //$audtis = Audits::find($id);
+        //return view("actualizar", compact($audits));
+        //echo($id);
     }
 
     
     public function update(Request $request, $id)
     {
-        //
+        $audit2 = Audits::find($id);
+        $audit2->User = $request->post('name');
+        $audit2->Name = $request->post('tipo');
+        $audit2->Description = $request->post('desc');
+        $audit2->save();
+        return response()->json(['success'=> true, 'message' => 'ok'], 200);
+
     }
 
    

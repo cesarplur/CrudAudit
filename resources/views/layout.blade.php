@@ -45,6 +45,10 @@
              justify-content: center !important;
              align-items: center !important;
         }
+        .tables tbody tr.selected {
+    color: white !important;
+    background-color: #eeeeee !important;
+}
         </style>
     </head>
     <body>

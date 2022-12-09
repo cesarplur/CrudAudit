@@ -7,7 +7,8 @@ document.getElementById("showaudi").onclick = function() {
             searching: true,
             pageLength: 7,
             lengthChange: false,
-            info: false,                       
+            info: false,
+            select: true,                       
             ajax: '/show',
             columns: [
                 { data: 'id', title: 'Id', visible: true },

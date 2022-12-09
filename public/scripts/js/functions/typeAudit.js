@@ -29,14 +29,14 @@ document.getElementById('submitFormType').addEventListener('click', () => {
                 if(responseVal == 'true'){                     
                     $('#inputTypeAudit').val('');
                     $('#inputDescAudit').val('');
-                    $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');
-                    //$('#tables').DataTable().ajax.reload();
-                    //window.location.href = window.location.href.split('#')[0];
+                    $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');                    
                 }else{
                     $('.statusMsg2').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
                 }
                 $('.submitBtn').removeAttr("disabled");
                 $('.modal-body').css('opacity', '');
+                //var ref = $('#tables').DataTable();
+                //ref.ajax.reload();
             }
         });
     }
