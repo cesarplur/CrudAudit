@@ -77,9 +77,11 @@
     <table id="tables" class="table table-striped table-bordered nowrap" style="width:90%;margin-left: auto;margin-right: auto;">
        
     </table>
+    <p style="text-align:center;">  *Da click en el registro que quieras actualizar</p>
             <div class="modal-footer">
+                
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="closeBtn1">Cerrar</button>
-                <button type="button" class="btn btn-dark" style="display:none;" id="updateBtn1" action="/edit" methos="POST" >Actualizar</button>
+                <button type="button" class="btn btn-dark" style="display:none;" id="updateBtn1">Actualizar</button>
             </div>
         </div>
     </div>

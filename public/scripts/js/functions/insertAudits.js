@@ -96,3 +96,6 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
         }
     });
 });
+document.getElementById('deleteBtn2').addEventListener('click', () => {
+    alert(row.id);
+});

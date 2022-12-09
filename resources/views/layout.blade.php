@@ -5,7 +5,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Test Audit</title>    
-        
+        <!--@push('js')-->
+        <!--@endpush-->
         <script src="{{ asset('scripts/jquery/jquery-3.3.1.min.js') }}"></script>
         <link href="{{ asset('scripts/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('scripts/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">        
@@ -17,7 +18,7 @@
         <script src="{{ asset('scripts/js/functions/relAudits.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/showAudits.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/insertAudits.js') }}" defer></script>
-
+        
         <style>    
        .navbar{
             background-color: #007bff !important;
