@@ -3,7 +3,7 @@ document.getElementById('submitForm').addEventListener('click', () => {
     var type1 = $('#inputTipo2').val();
     var desc = $('#inputDesc').val();    
     var msg = '';
-    alert(type1)
+    //alert(type1)
     if(user.trim() == '' ){
         alert('Ingresa el usuario.');
         $('#inputName').focus();
@@ -97,7 +97,7 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
     });
 });
 document.getElementById('deleteBtn2').addEventListener('click', () => {
-    alert(row.id);
+    //alert(row.id);
     $.ajaxSetup({
         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
     });
