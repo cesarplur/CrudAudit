@@ -216,7 +216,7 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal1" style="align:left;">Cancelar</button>
                 <!--<button type="button" class="btn btn-primary submitBtn"  id="submitForm">Enviar</button>-->
                 <button type="button" class="btn btn-warning submitBtn"  id="deleteBtn2">Eliminar</button>
-                <button type="button" class="btn btn-primary submitBtn"  id="updateBtn2">Enviar</button>
+                <button type="button" class="btn btn-primary submitBtn"  id="updateBtn2">Actualizar</button>
             </div>
             </div>
         </div>

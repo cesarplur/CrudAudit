@@ -1,8 +1,7 @@
 document.getElementById('submitForm').addEventListener('click', () => {
     var user = $('#inputName').val();
     var type1 = $('#inputTipo2').val();
-    var desc = $('#inputDesc').val();
-    var token = '{{ csrf_token() }}';
+    var desc = $('#inputDesc').val();    
     var msg = '';
     alert(type1)
     if(user.trim() == '' ){
@@ -52,10 +51,10 @@ var row = ""
 
 $('#tables').on('click', 'tbody tr', function () {
     var table = $('#tables').DataTable();    
-    row = table.row($(this)).data();    
-    //console.log(row);   //array completo
-    console.log(row.id);   //Id
+    row = table.row($(this)).data();        
+    console.log(row.id);  
     $("#updateBtn1").show();
+    
 });
 
 document.getElementById('closeBtn1').addEventListener('click', () => {

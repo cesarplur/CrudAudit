@@ -14,10 +14,7 @@
         <script src="{{ asset('scripts/jquery/bootstrap.min.js') }}"></script>         
         <script src="{{ asset('scripts/jquery/jquery.dataTables.min.js') }}" defer></script>         
         <script src="{{ asset('scripts/js/dataTables.bootstrap4.min.js') }}" defer></script>      
-        <script src="{{ asset('scripts/js/functions/typeAudit.js') }}" defer></script>
-        <script src="{{ asset('scripts/js/functions/relAudits.js') }}" defer></script>
-        <script src="{{ asset('scripts/js/functions/showAudits.js') }}" defer></script>
-        <script src="{{ asset('scripts/js/functions/insertAudits.js') }}" defer></script>
+        
         
         <style>    
        .navbar{
@@ -46,9 +43,8 @@
              justify-content: center !important;
              align-items: center !important;
         }
-        .tables tbody tr.selected {
-    color: white !important;
-    background-color: #eeeeee !important;
+        .tables {
+  background-color: red !important;
 }
         </style>
     </head>
@@ -82,6 +78,9 @@
       </nav>
     </header>
          
-    
+        <script src="{{ asset('scripts/js/functions/typeAudit.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/relAudits.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/showAudits.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/insertAudits.js') }}" defer></script>
     </body>
 </html>

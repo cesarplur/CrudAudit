@@ -1,7 +1,6 @@
 document.getElementById('submitFormType').addEventListener('click', () => {
     var type1 = $('#inputTypeAudit').val();
-    var desc = $('#inputDescAudit').val();
-    var token = '{{ csrf_token() }}';
+    var desc = $('#inputDescAudit').val();    
     var msg = '';
     if(type1.trim() == '' ){
         alert('Ingresa el tipo de Auditoria.');
