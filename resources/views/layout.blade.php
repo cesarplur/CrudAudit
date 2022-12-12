@@ -9,14 +9,9 @@
         <!--@endpush-->
         <script src="{{ asset('scripts/jquery/jquery-3.3.1.min.js') }}"></script>
         <link href="{{ asset('scripts/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('scripts/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">        
-        <script src="{{ asset('scripts/js/popper.min.js') }}"></script>  
-        <script src="{{ asset('scripts/jquery/bootstrap.min.js') }}"></script>         
-        <script src="{{ asset('scripts/jquery/jquery.dataTables.min.js') }}" defer></script>         
-        <script src="{{ asset('scripts/js/dataTables.bootstrap4.min.js') }}" defer></script>      
+        <link href="{{ asset('scripts/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">       
         
-        
-        <style>    
+    <style>    
        .navbar{
             background-color: #007bff !important;
             --bs-navbar-padding-x: 100;
@@ -44,9 +39,9 @@
              align-items: center !important;
         }
         .tables {
-  background-color: red !important;
-}
-        </style>
+             background-color: red !important;
+        }
+    </style>
     </head>
     <body>
     <header>
@@ -77,7 +72,12 @@
         </div>
       </nav>
     </header>
-         
+         <!--@push('js')-->
+        <!--@endpush-->
+        <script src="{{ asset('scripts/js/popper.min.js') }}"></script>  
+        <script src="{{ asset('scripts/jquery/bootstrap.min.js') }}"></script>         
+        <script src="{{ asset('scripts/jquery/jquery.dataTables.min.js') }}" defer></script>         
+        <script src="{{ asset('scripts/js/dataTables.bootstrap4.min.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/typeAudit.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/relAudits.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/showAudits.js') }}" defer></script>
