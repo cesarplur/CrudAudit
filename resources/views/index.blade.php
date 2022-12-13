@@ -191,7 +191,7 @@
             <!-- Form pop up -->
             <div class="modal-body">
                 <!--@csrf-->
-                <p class="statusMsg"></p>
+                <p class="statusMsg2"></p>
                 <form role="form">
                     <!--@method("PUT")-->
                     <div class="form-group">
@@ -213,8 +213,8 @@
                         <textarea class="form-control" id="inputDesc1" placeholder="Descripción..."></textarea>
                     </div>-->
                     <div class="form-group">
-                        <label for="Description">Descripción</label>
-                        <input type="text" class="form-control" id="Description" name="Description" placeholder="Desc"/>
+                        <label for="inputDesc1">Descripción</label>
+                        <input type="text" class="form-control" id="inputDesc1" name="inputDesc1" placeholder="Desc"/>
                     </div>
                 </form>
             </div>
