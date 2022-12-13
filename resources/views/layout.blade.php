@@ -41,8 +41,15 @@
         .tables {
              background-color: red !important;
         }
-        tr:hover td { background-color: #007bff }
-        tr:selected td { background-color: black };
+        tr:hover td { 
+            background-color: #0d6efd;
+        }        
+        .even.selected td {
+           background-color: #85C1E9; !important; /* Add !important to make sure override datables base styles */
+        }
+        .odd.selected td {
+          background-color: #85C1E9; !important; /* Add !important to make sure override datables base styles */
+        }
     </style>
     </head>
     <body>

@@ -1,5 +1,8 @@
 
-document.getElementById('submitForm').addEventListener('click', () => {    
+document.getElementById('submitForm').addEventListener('click', () => {  
+    var user = $('#User').val();
+    var type1 = $('#Name').val(); 
+    var desc = $('#Description').val();
     var msg = '';
     
     var data = new FormData(document.getElementById('sendForm'));
@@ -102,6 +105,8 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
         $('#inputDesc1').val('');
         var ref = $('#tables').DataTable();
         ref.ajax.reload();
+        //var ref2 = $('#table2').DataTable();
+        //ref2.ajax.reload();
         }
     });
 });
@@ -112,7 +117,7 @@ document.getElementById('deleteBtn2').addEventListener('click', () => {
         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
     });
     $.ajax({            
-        type:'get',
+        type:'post',
         url:"/destroy/"+ row.id,
         data:'&id='+row.id, 
     success: function() {
@@ -123,6 +128,8 @@ document.getElementById('deleteBtn2').addEventListener('click', () => {
         $('#inputDesc1').val('');
         var ref = $('#tables').DataTable();
         ref.ajax.reload();
+        //var ref2 = $('#table2').DataTable();
+        //ref2.ajax.reload();
         }
     });
 });
