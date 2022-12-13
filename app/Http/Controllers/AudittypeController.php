@@ -32,11 +32,13 @@ class AudittypeController extends Controller
      */
     public function store(Request $request)
     {
-        $audit1 = new Audittype();
+        /*$audit1 = new Audittype();
         $audit1->Name = $request->name;
         $audit1->Description = $request->desc;
-        $audit1->save();
+        $audit1->save();*/
         //return response('ok');
+        $content = json_decode($request->getContent(),true);
+        Audittype::insert($content);
         return response()->json(['success'=> true, 'message' => 'ok'], 200);
     }
 

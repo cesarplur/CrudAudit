@@ -1,12 +1,8 @@
 
-document.getElementById('submitForm').addEventListener('click', () => {
-    var user = $('#User').val();
-    var type1 = $('#Name').val();
-    var desc = $('#Description').val();    
+document.getElementById('submitForm').addEventListener('click', () => {    
     var msg = '';
     
     var data = new FormData(document.getElementById('sendForm'));
-    //const name= data.get('inputD');    
     const dataComplete = Object.fromEntries(data.entries());
     console.log(JSON.stringify(dataComplete));
 
@@ -86,14 +82,8 @@ document.getElementById('close1').addEventListener('click', () => {
     $("#updateAudit").hide();
 });
 
-document.getElementById('updateBtn2').addEventListener('click', () => { 
-    var user = $('#inputName1').val();
-    var type1 = $('#inputTipo1').val();
-    var desc = $('#inputDesc1').val();
-
-    var data = new FormData(document.getElementById('sendForm2'));
-    //const name= data.get('inputName1');    
-    //alert(name);
+document.getElementById('updateBtn2').addEventListener('click', () => {     
+    var data = new FormData(document.getElementById('sendForm2'));    
     const dataComplete = Object.fromEntries(data.entries());
     console.log(JSON.stringify(dataComplete));
 

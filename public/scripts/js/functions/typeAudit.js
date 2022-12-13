@@ -2,7 +2,7 @@ document.getElementById('submitFormType').addEventListener('click', () => {
     var type1 = $('#inputTypeAudit').val();
     var desc = $('#inputDescAudit').val();    
     var msg = '';
-    var data = new FormData(document.getElementById('sendForm2'));
+    var data = new FormData(document.getElementById('sendAudit'));
     //const name= data.get('inputName1');    
     //alert(name);
     const dataComplete = Object.fromEntries(data.entries());
@@ -23,7 +23,9 @@ document.getElementById('submitFormType').addEventListener('click', () => {
             type:'post',
             url:'/storetype',
             //data:'contactFrmSubmit=1&tipo='+type1+'&desc='+desc,
-            data:'contactFrmSubmit=1&name='+type1+'&tipo='+type1+'&desc='+desc,
+            //data:'contactFrmSubmit=1&name='+type1+'&tipo='+type1+'&desc='+desc,
+            data: JSON.stringify(dataComplete),
+            dataType: "json",
             beforeSend: function () {
                 $('.submitBtn').attr("disabled","disabled");
                 $('.modal-body').css('opacity', '.5');

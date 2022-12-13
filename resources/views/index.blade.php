@@ -153,7 +153,7 @@
             <div class="modal-body">
                 <!--@csrf-->
                 <p class="statusMsg2"></p>
-                <form role="form">
+                <form role="form" id="sendAudit">
                     <div class="form-group">
                         <label for="inputName">Tipo de Auditoria</label>
                         <input type="text" class="form-control" id="inputTypeAudit" name="Name" placeholder="Tipo de Auditoria"/>
