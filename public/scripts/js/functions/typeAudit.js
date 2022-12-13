@@ -32,10 +32,15 @@ document.getElementById('submitFormType').addEventListener('click', () => {
             },
             success:function(response){ 
                 var responseVal = response.success.toString();                          
-                if(responseVal == 'true'){                     
+                if(responseVal == 'true'){          
+                    var opt = $("#inputTypeAudit").val();
+                    $("#inputTipo1").append("<option>" + opt + "</option>");
+                    $("#Name").append("<option>" + opt + "</option>"); 
+                    $("#inputType").append("<option>" + opt + "</option>");           
                     $('#inputTypeAudit').val('');
                     $('#inputDescAudit').val('');
-                    $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');                    
+                    $('.statusMsg2').html('<span style="color:green;">Auditoria Registrada</p>');                         
+                    alert(opt);               
                 }else{
                     $('.statusMsg2').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
                 }

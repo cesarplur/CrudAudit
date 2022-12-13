@@ -151,11 +151,11 @@
                 <p class="statusMsg2"></p>
                 <form role="form" id="sendAudit">
                     <div class="form-group">
-                        <label for="inputName">Tipo de Auditoria</label>
+                        <label for="inputTypeAudit">Tipo de Auditoria</label>
                         <input type="text" class="form-control" id="inputTypeAudit" name="Name" placeholder="Tipo de Auditoria"/>
                     </div>                   
                     <div class="form-group">
-                        <label for="inputDesc1">Descripción</label>
+                        <label for="inputDescAudit">Descripción</label>
                         <input type="text" class="form-control" id="inputDescAudit" name="Description" placeholder="Desc"/>
                     </div>
                 </form>
