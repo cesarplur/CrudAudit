@@ -28,24 +28,28 @@
             <div class="modal-body">
                 <!--@csrf-->
                 <p class="statusMsg"></p>
-                <form role="form">
+                <form role="form" id="sendForm" name="sendForm" method="post" enctype="application/json">
                     <div class="form-group">
                         <label for="inputName">Usuario</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Usuario"/>
+                        <input type="text" class="form-control" id="User" name="User" placeholder="Usuario"/>
                     </div>
                     <div class="form-group">
                         <label for="inputTipo2">Tipo</label>
                         <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
-                    <select class="form-control" id="inputTipo2">
+                    <select class="form-control" id="Name" name="Name">
                     <option value=""></option>
                         @foreach($data2 as $item)                          
                         <option value="{{$item->Name}}">{{$item->Name}}</option>
                         @endforeach
                     </select>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="inputDesc">Descripción</label>
-                        <textarea class="form-control" id="inputDesc" placeholder="Descripción..."></textarea>
+                        <textarea class="form-control" id="inputDesc" nameid="inputDesc" placeholder="Descripción..."></textarea>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="inputD">Descripción</label>
+                        <input type="text" class="form-control" id="inputD" name="inputD" placeholder="Desc"/>
                     </div>
                 </form>
             </div>

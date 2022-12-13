@@ -1,20 +1,26 @@
+
 document.getElementById('submitForm').addEventListener('click', () => {
-    var user = $('#inputName').val();
-    var type1 = $('#inputTipo2').val();
-    var desc = $('#inputDesc').val();    
+    var user = $('#User').val();
+    var type1 = $('#Name').val();
+    var desc = $('#Description').val();    
     var msg = '';
-    //alert(type1)
+    
+    var data = new FormData(document.getElementById('sendForm'));
+    //const name= data.get('inputD');    
+    const dataComplete = Object.fromEntries(data.entries());
+    console.log(JSON.stringify(dataComplete));
+
     if(user.trim() == '' ){
         alert('Ingresa el usuario.');
-        $('#inputName').focus();
+        $('#User').focus();
         return false;
     }else if(type1.trim() == '' ){
         alert('Ingresa el tipo de Auditoria.');
-        $('#inputTipo').focus();
+        $('#Name').focus();
         return false;
     }else if(desc.trim() == '' ){
         alert('Ingresa la descripción.');
-        $('#inputMessage').focus();
+        $('#Description').focus();
         return false;
     }else{
         $.ajaxSetup({
@@ -23,7 +29,9 @@ document.getElementById('submitForm').addEventListener('click', () => {
         $.ajax({            
             type:'post',
             url:'/store',
-            data:'contactFrmSubmit=1&name='+user+'&tipo='+type1+'&desc='+desc,
+            //data:'formSubmit=1&name='+user+'&tipo='+type1+'&desc='+desc,
+            data: JSON.stringify(dataComplete),
+            dataType: "json",
             beforeSend: function () {
                 $('.submitBtn').attr("disabled","disabled");
                 $('.modal-body').css('opacity', '.5');
@@ -31,9 +39,9 @@ document.getElementById('submitForm').addEventListener('click', () => {
             success:function(response){ 
                 var responseVal = response.success.toString();                          
                 if(responseVal == 'true'){                    
-                    $('#inputName').val('');
-                    $('#inputTipo').val('');
-                    $('#inputDesc').val('');
+                    $('#User').val('');
+                    $('#Name').val('');
+                    $('#Description').val('');
                     $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');                    
                     //var ref = $('#tables').DataTable();
                     //ref.ajax.reload();
@@ -53,8 +61,8 @@ $('#tables').on('click', 'tbody tr', function () {
     var table = $('#tables').DataTable();    
     row = table.row($(this)).data();        
     console.log(row.id);  
-    $("#updateBtn1").show();
-    
+    $("#updateBtn1").show(); 
+    $(this).addClass("selected").siblings().removeClass("selected");   
 });
 
 document.getElementById('closeBtn1').addEventListener('click', () => {
@@ -64,16 +72,19 @@ document.getElementById('closeBtn1').addEventListener('click', () => {
 document.getElementById('updateBtn1').addEventListener('click', () => { 
     $("#modalForm").hide();
     $("#updateAudit").show();
-    $("#inputName1").val(row.User);
-    $("#inputTipo1").val(row.Name);
-    $("#inputDesc1").val(row.Description+'');
+    $("#User").val(row.User);
+    $("#Name").val(row.Name);
+    $("#Description").val(row.Description+'');
 });
+
 document.getElementById('closeModal1').addEventListener('click', () => {
     $("#updateAudit").hide();
 });
+
 document.getElementById('close1').addEventListener('click', () => {
     $("#updateAudit").hide();
 });
+
 document.getElementById('updateBtn2').addEventListener('click', () => { 
     var user = $('#inputName1').val();
     var type1 = $('#inputTipo1').val();
@@ -96,6 +107,7 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
         }
     });
 });
+
 document.getElementById('deleteBtn2').addEventListener('click', () => {
     //alert(row.id);
     $.ajaxSetup({

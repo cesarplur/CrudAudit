@@ -33,12 +33,13 @@ class AuditsController extends Controller
      */
     public function store(Request $request)
     {
-        $audit1 = new Audits();
-        $audit1->User = $request->name;
-        $audit1->Name = $request->tipo;
-        $audit1->Description = $request->desc;
-        $audit1->save();
-        //return response('ok');
+        /*$audit1 = new Audits();
+        $audit1->User = $request->post('inputName');
+        $audit1->Name = $request->post('inputTipo2');
+        $audit1->Description = $request->post('inputD');
+        $audit1->save();*/
+        $content = json_decode($request->getContent(),true);
+        Audits::insert($content);
         return response()->json(['success'=> true, 'message' => 'ok'], 200);
     }
 
@@ -59,11 +60,13 @@ class AuditsController extends Controller
     
     public function update(Request $request, $id)
     {
-        $audit2 = Audits::find($id);
+        $content = json_decode($request->getContent(),true);
+        /*$audit2 = Audits::find($id);
         $audit2->User = $request->post('name');
         $audit2->Name = $request->post('tipo');
         $audit2->Description = $request->post('desc');
-        $audit2->save();
+        $audit2->save();*/       
+       
         return response()->json(['success'=> true, 'message' => 'ok'], 200);
 
     }

@@ -41,6 +41,8 @@
         .tables {
              background-color: red !important;
         }
+        tr:hover td { background-color: #007bff }
+        tr:selected td { background-color: black };
     </style>
     </head>
     <body>
@@ -82,5 +84,6 @@
         <script src="{{ asset('scripts/js/functions/relAudits.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/showAudits.js') }}" defer></script>
         <script src="{{ asset('scripts/js/functions/insertAudits.js') }}" defer></script>
+        <script src="{{ asset('scripts/js/functions/serializeJSON.js') }}" defer></script>
     </body>
 </html>
