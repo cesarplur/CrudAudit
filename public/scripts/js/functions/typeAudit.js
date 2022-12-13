@@ -22,8 +22,6 @@ document.getElementById('submitFormType').addEventListener('click', () => {
         $.ajax({            
             type:'post',
             url:'/storetype',
-            //data:'contactFrmSubmit=1&tipo='+type1+'&desc='+desc,
-            //data:'contactFrmSubmit=1&name='+type1+'&tipo='+type1+'&desc='+desc,
             data: JSON.stringify(dataComplete),
             dataType: "json",
             beforeSend: function () {
