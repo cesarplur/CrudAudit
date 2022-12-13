@@ -70,8 +70,7 @@ document.getElementById('updateBtn1').addEventListener('click', () => {
     $("#updateAudit").show();
     $("#inputName1").val(row.User);
     $("#inputTipo1").val(row.Name);
-    $("#inputDesc1").val(row.Description+'');
-    //alert(row.User);
+    $("#inputDesc1").val(row.Description);
 });
 
 document.getElementById('closeModal1').addEventListener('click', () => {

@@ -43,10 +43,6 @@
                         @endforeach
                     </select>
                     </div>
-                    <!--<div class="form-group">
-                        <label for="inputDesc">Descripción</label>
-                        <textarea class="form-control" id="inputDesc" nameid="inputDesc" placeholder="Descripción..."></textarea>
-                    </div>-->
                     <div class="form-group">
                         <label for="Description">Descripción</label>
                         <input type="text" class="form-control" id="Description" name="Description" placeholder="Desc"/>
@@ -157,11 +153,7 @@
                     <div class="form-group">
                         <label for="inputName">Tipo de Auditoria</label>
                         <input type="text" class="form-control" id="inputTypeAudit" name="Name" placeholder="Tipo de Auditoria"/>
-                    </div>                    
-                   <!-- <div class="form-group">
-                        <label for="inputDesc">Descripción</label>
-                        <textarea class="form-control" id="inputDescAudit" placeholder="Descripción..."></textarea>
-                    </div>-->
+                    </div>                   
                     <div class="form-group">
                         <label for="inputDesc1">Descripción</label>
                         <input type="text" class="form-control" id="inputDescAudit" name="Description" placeholder="Desc"/>
@@ -212,10 +204,6 @@
                         @endforeach
                     </select>
                     </div>
-                    <!--<div class="form-group">
-                        <label for="inputDesc">Descripción</label>
-                        <textarea class="form-control" id="inputDesc1" placeholder="Descripción..."></textarea>
-                    </div>-->
                     <div class="form-group">
                         <label for="inputDesc1">Descripción</label>
                         <input type="text" class="form-control" id="inputDesc1" name="Description" placeholder="Desc"/>
