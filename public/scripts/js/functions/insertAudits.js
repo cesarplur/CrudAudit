@@ -72,9 +72,9 @@ document.getElementById('closeBtn1').addEventListener('click', () => {
 document.getElementById('updateBtn1').addEventListener('click', () => { 
     $("#modalForm").hide();
     $("#updateAudit").show();
-    $("#User").val(row.User);
-    $("#Name").val(row.Name);
-    $("#Description").val(row.Description+'');
+    $("#inputName1").val(row.User);
+    $("#inputTipo1").val(row.Name);
+    $("#inputDesc1").val(row.Description+'');
 });
 
 document.getElementById('closeModal1').addEventListener('click', () => {

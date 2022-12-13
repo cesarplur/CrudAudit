@@ -48,8 +48,8 @@
                         <textarea class="form-control" id="inputDesc" nameid="inputDesc" placeholder="Descripción..."></textarea>
                     </div>-->
                     <div class="form-group">
-                        <label for="inputD">Descripción</label>
-                        <input type="text" class="form-control" id="inputD" name="inputD" placeholder="Desc"/>
+                        <label for="Description">Descripción</label>
+                        <input type="text" class="form-control" id="Description" name="Description" placeholder="Desc"/>
                     </div>
                 </form>
             </div>
@@ -208,9 +208,13 @@
                         @endforeach
                     </select>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="inputDesc">Descripción</label>
                         <textarea class="form-control" id="inputDesc1" placeholder="Descripción..."></textarea>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="Description">Descripción</label>
+                        <input type="text" class="form-control" id="Description" name="Description" placeholder="Desc"/>
                     </div>
                 </form>
             </div>
