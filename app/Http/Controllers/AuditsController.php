@@ -60,15 +60,13 @@ class AuditsController extends Controller
     
     public function update(Request $request, $id)
     {
+        $audit2 = Audits::find($id);
         $content = json_decode($request->getContent(),true);
-        /*$audit2 = Audits::find($id);
-        $audit2->User = $request->post('name');
-        $audit2->Name = $request->post('tipo');
-        $audit2->Description = $request->post('desc');
-        $audit2->save();*/       
-       
+        $audit2->User = $content['User'];
+        $audit2->Name = $content['Name'];
+        $audit2->Description = $content['Description'];
+        $audit2->save();          
         return response()->json(['success'=> true, 'message' => 'ok'], 200);
-
     }
 
    

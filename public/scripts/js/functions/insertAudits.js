@@ -75,6 +75,7 @@ document.getElementById('updateBtn1').addEventListener('click', () => {
     $("#inputName1").val(row.User);
     $("#inputTipo1").val(row.Name);
     $("#inputDesc1").val(row.Description+'');
+    //alert(row.User);
 });
 
 document.getElementById('closeModal1').addEventListener('click', () => {
@@ -89,13 +90,21 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
     var user = $('#inputName1').val();
     var type1 = $('#inputTipo1').val();
     var desc = $('#inputDesc1').val();
+
+    var data = new FormData(document.getElementById('sendForm2'));
+    const name= data.get('inputName1');    
+    //alert(name);
+    const dataComplete = Object.fromEntries(data.entries());
+    console.log(JSON.stringify(dataComplete));
+
     $.ajaxSetup({
         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
     });
     $.ajax({            
-        type:'get',
+        type:'post',
         url:"/update/"+ row.id,
-        data:'contactFrmSubmit=1&name='+user+'&tipo='+type1+'&desc='+desc, 
+        data: JSON.stringify(dataComplete),
+        dataType: "json",
     success: function() {
         alert('Actualizado con exito')
         $("#updateAudit").hide();

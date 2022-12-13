@@ -192,16 +192,16 @@
             <div class="modal-body">
                 <!--@csrf-->
                 <p class="statusMsg2"></p>
-                <form role="form">
+                <form role="form" id="sendForm2" method="post" enctype="application/json">
                     <!--@method("PUT")-->
                     <div class="form-group">
                         <label for="inputName1">Usuario</label>
-                        <input type="text" class="form-control" id="inputName1" placeholder="Usuario"/>
+                        <input type="text" class="form-control" id="inputName1" name="User" placeholder="Usuario"/>
                     </div>
                     <div class="form-group">
                         <label for="inputTipo">Tipo</label>
                         <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
-                    <select class="form-control" id="inputTipo1">
+                    <select class="form-control" id="inputTipo1" name="Name">
                     <option value=""></option>
                         @foreach($data2 as $item)                          
                         <option value="{{$item->Name}}">{{$item->Name}}</option>
@@ -214,7 +214,7 @@
                     </div>-->
                     <div class="form-group">
                         <label for="inputDesc1">Descripción</label>
-                        <input type="text" class="form-control" id="inputDesc1" name="inputDesc1" placeholder="Desc"/>
+                        <input type="text" class="form-control" id="inputDesc1" name="Description" placeholder="Desc"/>
                     </div>
                 </form>
             </div>
