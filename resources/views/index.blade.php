@@ -156,11 +156,15 @@
                 <form role="form">
                     <div class="form-group">
                         <label for="inputName">Tipo de Auditoria</label>
-                        <input type="text" class="form-control" id="inputTypeAudit" placeholder="Tipo de Auditoria"/>
+                        <input type="text" class="form-control" id="inputTypeAudit" name="Name" placeholder="Tipo de Auditoria"/>
                     </div>                    
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         <label for="inputDesc">Descripción</label>
                         <textarea class="form-control" id="inputDescAudit" placeholder="Descripción..."></textarea>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="inputDesc1">Descripción</label>
+                        <input type="text" class="form-control" id="inputDescAudit" name="Description" placeholder="Desc"/>
                     </div>
                 </form>
             </div>            

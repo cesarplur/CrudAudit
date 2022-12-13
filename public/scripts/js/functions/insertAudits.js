@@ -92,7 +92,7 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
     var desc = $('#inputDesc1').val();
 
     var data = new FormData(document.getElementById('sendForm2'));
-    const name= data.get('inputName1');    
+    //const name= data.get('inputName1');    
     //alert(name);
     const dataComplete = Object.fromEntries(data.entries());
     console.log(JSON.stringify(dataComplete));

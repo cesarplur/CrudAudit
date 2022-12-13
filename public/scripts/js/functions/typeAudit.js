@@ -2,6 +2,11 @@ document.getElementById('submitFormType').addEventListener('click', () => {
     var type1 = $('#inputTypeAudit').val();
     var desc = $('#inputDescAudit').val();    
     var msg = '';
+    var data = new FormData(document.getElementById('sendForm2'));
+    //const name= data.get('inputName1');    
+    //alert(name);
+    const dataComplete = Object.fromEntries(data.entries());
+    console.log(JSON.stringify(dataComplete));
     if(type1.trim() == '' ){
         alert('Ingresa el tipo de Auditoria.');
         $('#inputTypeAudit').focus();
