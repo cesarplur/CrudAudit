@@ -107,7 +107,6 @@
                 <form role="form">                    
                     <div class="form-group">
                         <label for="inputType">Tipo</label>
-                        <!--<input type="text" class="form-control" id="inputTipo" placeholder="Tipo de Auditoria"/>-->
                     <select class="form-control" id="inputType" name="inputType" >
                     <option value="empty"></option>
                         @foreach($data2 as $item)                          

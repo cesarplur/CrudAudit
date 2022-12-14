@@ -18,5 +18,4 @@ document.getElementById("showaudi").onclick = function() {
             ],    
             
         });
-        //$("#tables").dataTable().fnDestroy(); 
     };

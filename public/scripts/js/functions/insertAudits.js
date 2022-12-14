@@ -28,7 +28,6 @@ document.getElementById('submitForm').addEventListener('click', () => {
         $.ajax({            
             type:'post',
             url:'/store',
-            //data:'formSubmit=1&name='+user+'&tipo='+type1+'&desc='+desc,
             data: JSON.stringify(dataComplete),
             dataType: "json",
             beforeSend: function () {
@@ -41,9 +40,7 @@ document.getElementById('submitForm').addEventListener('click', () => {
                     $('#User').val('');
                     $('#Name').val('');
                     $('#Description').val('');
-                    $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');                    
-                    //var ref = $('#tables').DataTable();
-                    //ref.ajax.reload();
+                    $('.statusMsg').html('<span style="color:green;">Auditoria Registrada</p>');
                 }else{
                     $('.statusMsg').html('<span style="color:red;">Ocurrio un problema, por favor intentalo de nuevo</span>');
                 }
@@ -105,14 +102,11 @@ document.getElementById('updateBtn2').addEventListener('click', () => {
         $('#inputDesc1').val('');
         var ref = $('#tables').DataTable();
         ref.ajax.reload();
-        //var ref2 = $('#table2').DataTable();
-        //ref2.ajax.reload();
         }
     });
 });
 
 document.getElementById('deleteBtn2').addEventListener('click', () => {
-    //alert(row.id);
     $.ajaxSetup({
         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
     });
@@ -128,8 +122,6 @@ document.getElementById('deleteBtn2').addEventListener('click', () => {
         $('#inputDesc1').val('');
         var ref = $('#tables').DataTable();
         ref.ajax.reload();
-        //var ref2 = $('#table2').DataTable();
-        //ref2.ajax.reload();
         }
     });
 });
